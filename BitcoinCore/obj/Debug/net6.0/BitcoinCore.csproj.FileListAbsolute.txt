@@ -1,0 +1,13 @@
+C:\Users\13\source\repos\BitcoinCore\BitcoinCore\bin\Debug\net6.0\BitcoinCore.xml
+C:\Users\13\source\repos\BitcoinCore\BitcoinCore\bin\Debug\net6.0\BitcoinCore.deps.json
+C:\Users\13\source\repos\BitcoinCore\BitcoinCore\bin\Debug\net6.0\BitcoinCore.dll
+C:\Users\13\source\repos\BitcoinCore\BitcoinCore\bin\Debug\net6.0\BitcoinCore.pdb
+C:\Users\13\source\repos\BitcoinCore\BitcoinCore\obj\Debug\net6.0\BitcoinCore.csproj.AssemblyReference.cache
+C:\Users\13\source\repos\BitcoinCore\BitcoinCore\obj\Debug\net6.0\BitcoinCore.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\13\source\repos\BitcoinCore\BitcoinCore\obj\Debug\net6.0\BitcoinCore.AssemblyInfoInputs.cache
+C:\Users\13\source\repos\BitcoinCore\BitcoinCore\obj\Debug\net6.0\BitcoinCore.AssemblyInfo.cs
+C:\Users\13\source\repos\BitcoinCore\BitcoinCore\obj\Debug\net6.0\BitcoinCore.csproj.CoreCompileInputs.cache
+C:\Users\13\source\repos\BitcoinCore\BitcoinCore\obj\Debug\net6.0\BitcoinCore.dll
+C:\Users\13\source\repos\BitcoinCore\BitcoinCore\obj\Debug\net6.0\refint\BitcoinCore.dll
+C:\Users\13\source\repos\BitcoinCore\BitcoinCore\obj\Debug\net6.0\BitcoinCore.pdb
+C:\Users\13\source\repos\BitcoinCore\BitcoinCore\obj\Debug\net6.0\ref\BitcoinCore.dll

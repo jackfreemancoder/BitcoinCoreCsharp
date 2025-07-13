@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<Description>Csharp Bitcoin Library Implementation</Description>
+    <PackageIcon>icon.png</PackageIcon>
+		<PackageTags>
+bitcoin, btc, nbitcoin, litecoin, ltc, altcoin, altcoins, eth, ethereum, erc20, token, tokens, cryptocurrency, crypto, payments, payment, blockchain, defi, web3, smartcontract, smartcontracts, wallet, wallets, address, transaction, transactions, invoice, invoices, merchant, micropayments, lightning, lightningnetwork, segwit, bech32, bip32, bip39, bip44, hdwallet, mnemonic, privatekey, publickey, signing, signature, hash, hashing, sha256, ripemd160, base58, base64, hex, encryption, security, keymanagement, keypair, cryptoapi, crypto-lib, dotnet, .net, netstandard, csharp, c#, library, sdk, nuget, fintech, digitalcurrency, coin, tokensale, dapp, tokenization, cryptoexchange, custodial, noncustodial, multisig, script, scripting, chain, blockchainapi, node, fullnode, rpc, jsonrpc, blockexplorer, explorer, validator, mining, miner, proof-of-work, proof-of-stake, pow, pos, faucet, integration, api, restapi, cryptolib
+</PackageTags>
+
+		<PackageProjectUrl>https://github.com/jackfreemancoder/BitcoinCoreCsharp</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+	</PropertyGroup>
+	<PropertyGroup>
+		<Version Condition=" '$(Version)' == '' ">9.0.0</Version>
+		<LangVersion>12.0</LangVersion>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+	</PropertyGroup>
+	<PropertyGroup>
+    <TargetFrameworks>net472;netstandard2.1;netstandard2.0;net6.0</TargetFrameworks>
+    <TargetFrameworks Condition="'$(TargetFrameworkOverride)' != ''">$(TargetFrameworkOverride)</TargetFrameworks>
+		<NoWarn>1591;1573;1572;1584;1570;3021</NoWarn>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+		<DebugType>portable</DebugType>
+		<Optimize>true</Optimize>
+		<DocumentationFile>bin\Release\BitcoinCore.XML</DocumentationFile>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(TargetFramework)' == 'net472' ">
+		<DefineConstants>$(DefineConstants);CLASSICDOTNET;NO_ARRAY_FILL;NULLABLE_SHIMS;NO_SOCKETASYNC;NO_RECORDS</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.1' Or '$(TargetFramework)' == 'netstandard2.0'  Or '$(TargetFramework)' == 'net6.0'">
+		<DefineConstants>$(DefineConstants);NOCUSTOMSSLVALIDATION;NO_NATIVERIPEMD160</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.1' Or '$(TargetFramework)' == 'net6.0'">
+		<DefineConstants>$(DefineConstants);NETCORE;HAS_SPAN;NO_BC</DefineConstants>
+    <RemoveBC>true</RemoveBC>
+	</PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.1' ">
+	<DefineConstants>$(DefineConstants);NO_SOCKETASYNC;NO_RECORDS</DefineConstants>
+  </PropertyGroup>
+	<PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+		<DefineConstants>$(DefineConstants);NETSTANDARD;NO_ARRAY_FILL;NULLABLE_SHIMS;NO_NATIVE_RFC2898_HMACSHA512;NO_NATIVERIPEMD160;NO_SOCKETASYNC;NO_RECORDS</DefineConstants>
+	</PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+		<DefineConstants>$(DefineConstants);SECP256K1_VERIFY</DefineConstants>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="System.Buffers" Version="4.5.0" Condition="'$(TargetFramework)' != 'netstandard2.1' And '$(TargetFramework)' != 'net6.0'" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="1.0.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">
+		<Reference Include="System.Net.Http" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(Configuration)' == 'Release' ">
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+	</ItemGroup>
+
+  <ItemGroup Condition=" '$(RemoveBC)' == 'true' ">
+    <Compile Remove="BouncyCastle\**\*.cs"></Compile>
+    <Compile Include="BouncyCastle\math\BigInteger.cs"></Compile>
+    <Compile Include="BouncyCastle\util\Arrays.cs"></Compile>
+    <Compile Include="BouncyCastle\util\Platform.cs"></Compile>
+    <Compile Include="BouncyCastle\crypto\digests\RipeMD160Digest.cs"></Compile>
+    <Compile Include="BouncyCastle\crypto\digests\Sha1Digest.cs"></Compile>
+    <Compile Include="BouncyCastle\crypto\digests\Sha256Digest.cs"></Compile>
+    <Compile Include="BouncyCastle\crypto\digests\KeccakDigest.cs"></Compile>
+    <Compile Include="BouncyCastle\crypto\digests\Sha3Digest.cs"></Compile>
+    <Compile Include="BouncyCastle\crypto\digests\GeneralDigest.cs"></Compile>
+    <Compile Include="BouncyCastle\crypto\util\Pack.cs"></Compile>
+  </ItemGroup>
+	<ItemGroup>
+    <None Include="..\icon.png" Pack="true" PackagePath="\" />
+		<None Update="UInt2561.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>UInt2561.cs</LastGenOutput>
+		</None>
+	</ItemGroup>
+
+	<Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
+		<ItemGroup>
+			<DocFile Include="bin\$(Configuration)\$(TargetFramework)\*.xml" />
+		</ItemGroup>
+		<Copy SourceFiles="@(DocFile)" DestinationFolder="$(PublishDir)" SkipUnchangedFiles="false" />
+	</Target>
+
+	<PropertyGroup>
+		<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\BitcoinCore.xml</DocumentationFile>
+		<RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
+	</PropertyGroup>
+
+	<PropertyGroup>
+	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+</Project>
