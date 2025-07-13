@@ -2,22 +2,6 @@
 
 **Bitcoin Core** is a comprehensive and feature-rich Bitcoin library for C# and .NET developers. It enables seamless integration with the Bitcoin protocol, offering full support for transaction creation, wallet operations, script handling, and much more.
 
-## Features
-
-- ✅ Full Bitcoin protocol support (P2P, network messages, blocks, transactions)
-- 🔐 Transaction creation, signing, verification, and broadcasting
-- 🗝️ Address and key management (HD wallets, private/public keys, address formats)
-- 📜 Bitcoin Script support (P2PKH, P2SH, Multisig, custom scripts)
-- ⚡ SegWit (P2WPKH, P2WSH) and Taproot (P2TR) ready
-- 📝 PSBT (Partially Signed Bitcoin Transactions) support
-- 💸 Fee estimation and coin selection tools
-- 🌐 Custom network support (mainnet, testnet, regtest, custom chains)
-- 🔍 Blockchain parsing and analysis utilities
-- 🧠 Smart contract and scripting capabilities
-- 📦 BIP standards support (BIP32, BIP39, BIP44)
-- 🔧 Utilities for Bitcoin data formats (Base58, Bech32, etc.)
-
-
 ## Examples
 
 ### Derive Bitcoin address from bip 39 mnemonic phrase
