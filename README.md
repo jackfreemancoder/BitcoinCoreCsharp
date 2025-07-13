@@ -16,20 +16,8 @@
 - 🧠 Smart contract and scripting capabilities
 - 📦 BIP standards support (BIP32, BIP39, BIP44)
 - 🔧 Utilities for Bitcoin data formats (Base58, Bech32, etc.)
-- 
-## Getting Started
 
-Install via NuGet:
 
-```
-Install-Package BitcoinCore
-```
-
-Or with .NET CLI:
-
-```
-dotnet add package BitcoinCore
-```
 ## Examples
 
 ### Derive Bitcoin address from bip 39 mnemonic phrase
@@ -123,6 +111,41 @@ class Program
 }
 
 ```
+### Parse a WIF and Get the Corresponding Address
+```csharp
+string wif = "yourWIFstringHere";
+var network = Network.Main;
+Key key = Key.Parse(wif, network);
+var address = key.PubKey.GetAddress(ScriptPubKeyType.Legacy, network);
+Console.WriteLine($"Address: {address}");
+
+```
+### Generate a BIP39 Mnemonic and Derive Addresses
+```csharp
+var mnemonic = new Mnemonic(Wordlist.English, WordCount.Twelve);
+Console.WriteLine($"Mnemonic: {mnemonic}");
+
+var seed = mnemonic.DeriveSeed();
+var masterKey = new ExtKey(seed);
+var key = masterKey.Derive(new KeyPath("44'/0'/0'/0/0"));
+
+Console.WriteLine($"Address: {key.PrivateKey.PubKey.GetAddress(ScriptPubKeyType.Legacy, Network.Main)}");
+
+```
+## Getting Started
+
+Install via NuGet:
+
+```
+Install-Package BitcoinCore
+```
+
+Or with .NET CLI:
+
+```
+dotnet add package BitcoinCore
+```
+
 
 ## Target Frameworks
 
