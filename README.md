@@ -30,7 +30,45 @@ Or with .NET CLI:
 ```
 dotnet add package BitcoinCore
 ```
+## Examples
 
+### Derive Bitcoin address from bip 39 mnemonic phrase
+```csharp
+
+        // Your BIP39 mnemonic phrase (12 or 24 words)
+        string mnemonicPhrase = "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about";
+
+        // Create a Mnemonic object (using English wordlist by default)
+        var mnemonic = new Mnemonic(mnemonicPhrase);
+
+        // Optionally, provide a passphrase (empty string if none)
+        string passphrase = "";
+
+        // Generate seed from mnemonic + passphrase
+        var seed = mnemonic.DeriveSeed(passphrase);
+
+        // Create ExtKey from seed (BIP32 root key)
+        ExtKey masterKey = new ExtKey(seed);
+
+        // Choose network (MainNet or TestNet)
+        Network network = Network.Main;
+
+        // Derive the first account external chain key using BIP44 path: m/44'/0'/0'/0/0
+        // m / purpose' / coin_type' / account' / change / address_index
+        var keyPath = new KeyPath("44'/0'/0'/0/0");
+
+        // Derive the key at that path
+        ExtKey key = masterKey.Derive(keyPath);
+
+        // Get the private key
+        Key privateKey = key.PrivateKey;
+
+        // Get the corresponding Bitcoin address (Legacy P2PKH)
+        BitcoinPubKeyAddress address = privateKey.PubKey.GetAddress(ScriptPubKeyType.Legacy, network);
+
+        Console.WriteLine($"Address: {address}");
+        Console.WriteLine($"Private Key (WIF): {privateKey.GetWif(network)}");
+```
 ### Transaction Builder Example
 ```csharp
 using BitcoinCore;
